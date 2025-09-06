@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define MAX_LINE 1024
 
@@ -11,12 +12,35 @@ typedef struct {
     char date[20];
 }Patient;
 
-Patient *patient = NULL;
+Patient *patients = NULL;
 int patient_count = 0;
 
-int load_csv(const char *filename)
+int sort_patient(const char *keyword){
+    int i;
+    for(i = 0 ;i < patient_count;i++)
+    {
+        if(strstr(patients[i].name , keyword) || strstr(patients[i].disease , keyword))
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int check_condition(char *condition){
+    int state = 0;
+    char c = condition[0];
+    if('A' <= c && c <= 'Z')
+    {
+        c = c + 32;
+    }
+    return (c == 'y');
+
+}
+
+void load_csv(const char *filename)
 {
-    FILE *fp = fopen("info.csv" , "r");
+    FILE *fp = fopen(filename , "r");
     if(fp == NULL)
     {
         printf("Failed to open file for reading\n");
@@ -27,16 +51,17 @@ int load_csv(const char *filename)
     {
         printf("Empty File!\n");
         fclose(fp);
+        return;
     }
     while (fgets(text, sizeof(text) , fp)){
-        char *name = strtok(line , ",");
+        char *name = strtok(text , ",");
         char *age = strtok(NULL , ",");
         char *disease = strtok(NULL , ",");
         char *date = strtok(NULL , ",\n");
 
         if(name && age && disease && date)
         {
-            patients = realloc(patient , (patient-count + 1) * sizeof(Patient))
+            patients = realloc(patients , (patient_count + 1) * sizeof(Patient));
             if(!patients)
             {
                 perror("Memory allocation failed");
@@ -52,7 +77,7 @@ int load_csv(const char *filename)
     fclose(fp);
 }
 
-int save_csv(const char *filename)
+void save_csv(const char *filename)
 {
     FILE *fp = fopen(filename , "w");
     if(!fp)
@@ -63,15 +88,15 @@ int save_csv(const char *filename)
     fprintf(fp , "name,age,congenital-disease,date\n");
     for(int i = 0;i < patient_count; i++)
     {
-        fprintf(fp, "%s,%d,%s,%s\n",patient[i].name , 
-                                    patient[i].age,
-                                    patient[i].disease,
-                                    patient[i].date);
+        fprintf(fp, "%s,%d,%s,%s\n",patients[i].name , 
+                                    patients[i].age,
+                                    patients[i].disease,
+                                    patients[i].date);
     }
     fclose(fp);
 }
 
-int list_patient()
+void list_patient()
 {
     if(patient_count == 0)
     {
@@ -80,15 +105,12 @@ int list_patient()
     }
     for(int i = 0 ; i < patient_count;i++)
     {
-        printf("Patient [%d]
-                Name : %s\n
-                Age : %d\n
-                Disease : %s\n
-                Date : %s\n" , i+1 , patients[i].name , patient[i].age , patient[i].disease , patient[i].date);
+        printf("Patient [%d]\nName : %s\nAge : %d\nDisease : %s\nDate : %s\n" , 
+            i+1 , patients[i].name , patients[i].age , patients[i].disease , patients[i].date);
     }
 }
 
-int add_patient()
+void add_patient()
 {
     Patient p;
     printf("Enter name : ");
@@ -100,7 +122,7 @@ int add_patient()
     printf("Enter date (YYYY-MM-DD) : ");
     scanf(" %[^\n]" , p.date);
 
-    patient = realloc(patient , (patient_count + 1) * sizeof(Patient));
+    patients = realloc(patients , (patient_count + 1) * sizeof(Patient));
     if(!patients){
         perror("Memmory allocation failed");
         exit(1);
@@ -109,22 +131,76 @@ int add_patient()
     printf("Patient added!\n");
 }
 
-int search()
+void search()
 {
-
+    char keyword[50];
+    printf("Enter name or disease to search : ");
+    scanf(" %[^\n]" , keyword);
+    int i = sort_patient(keyword);
+    if(i != -1)
+    {
+        printf("Patient [%d]\nName : %s\nAge : %d\nDisease : %s\nDate : %s\n" , 
+        i+1 , patients[i].name , patients[i].age , patients[i].disease , patients[i].date); 
+    }   
+    else{
+        printf("No match found!");
+    }
 }
 
-int update()
+void update_patient()
 {
-
+    char name[50];
+    char condition[4];
+    printf("Enter Pateint name for Update: ");
+    scanf(" %[^\n]" , name);
+    int i = sort_patient(name);
+    if(i == -1)
+    {
+        printf("Patient not found!");
+        return;
+    }
+    printf("Patient [%d]\nName : %s\n" , i+1 , patients[i].name);
+    printf("Yes / no");
+    scanf(" %[^\n]" , condition);
+    if(check_condition(condition))
+    {
+        printf("Enter new age : ");
+        scanf("%d" , &patients[i].age);
+        printf("Enter new disease : ");
+        scanf(" %[^\n]" , patients[i].disease);
+        for(int i = 0;i<7;i++)
+        {
+            printf(".");
+            fflush(stdout);
+            sleep(500);
+        }
+        printf("Updated!\n");
+    }
 }
 
-int delete()
+void delete_patient()
 {
-
+    char name[50];
+    printf("Enter the patient name to delete: ");
+    scanf(" %[^\n]" , name);
+    int i = sort_patient(name);
+    if(i != -1)
+    {
+        for(int j = i;j < patient_count-1;j++)
+        {
+            patients[j] = patients[j+1];
+        }
+        patient_count--;
+        patients = realloc(patients , patient_count * sizeof(Patient));
+        printf("Deleted successfully!");
+        return;
+    }
+    else{
+        printf("Patient not found!");
+    }
 }
 
-int menu()
+void menu()
 {
     printf("###########################################\n");
     printf("1. list patient health information\n");
@@ -145,13 +221,11 @@ int display_menu()
 }
 
 
-
-
-
 int main()
 {
     int option;
-    load_csv("data.csv");
+    char filename[9] = "data.csv";
+    load_csv(filename);
     while (1){    
         option = display_menu();
         switch (option)
@@ -160,16 +234,19 @@ int main()
                 list_patient();
                 break;
             case 2:
+                add_patient();
                 save_csv(filename);
                 break;
             case 3:
                 search();
                 break;
             case 4:
-                update();
+                update_patient();
+                save_csv(filename);
                 break;
             case 5:
-                delete();
+                delete_patient();
+                save_csv(filename);
                 break;
             default:
                 printf("Invalid input\n");
