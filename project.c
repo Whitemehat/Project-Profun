@@ -4,14 +4,109 @@
 
 #define MAX_LINE 1024
 
-int list_patient()
+typedef struct {
+    char name[50];
+    int age;
+    char disease[100];
+    char date[20];
+}Patient;
+
+Patient *patient = NULL;
+int patient_count = 0;
+
+int load_csv(const char *filename)
 {
-    
+    FILE *fp = fopen("info.csv" , "r");
+    if(fp == NULL)
+    {
+        printf("Failed to open file for reading\n");
+        return;
+    }
+    char text[MAX_LINE];
+    if(fgets(text , sizeof(text) , fp) == NULL)
+    {
+        printf("Empty File!\n");
+        fclose(fp);
+    }
+    while (fgets(text, sizeof(text) , fp)){
+        char *name = strtok(line , ",");
+        char *age = strtok(NULL , ",");
+        char *disease = strtok(NULL , ",");
+        char *date = strtok(NULL , ",\n");
+
+        if(name && age && disease && date)
+        {
+            patients = realloc(patient , (patient-count + 1) * sizeof(Patient))
+            if(!patients)
+            {
+                perror("Memory allocation failed");
+                exit(1);
+            }
+            strcpy(patients[patient_count].name , name);
+            patients[patient_count].age = atoi(age);
+            strcpy(patients[patient_count].disease , disease);
+            strcpy(patients[patient_count].date , date);
+            patient_count++;
+        }
+    }
+    fclose(fp);
 }
 
-int add_patient_info()
+int save_csv(const char *filename)
 {
+    FILE *fp = fopen(filename , "w");
+    if(!fp)
+    {
+        printf("Failed to saving file");
+        return;
+    }
+    fprintf(fp , "name,age,congenital-disease,date\n");
+    for(int i = 0;i < patient_count; i++)
+    {
+        fprintf(fp, "%s,%d,%s,%s\n",patient[i].name , 
+                                    patient[i].age,
+                                    patient[i].disease,
+                                    patient[i].date);
+    }
+    fclose(fp);
+}
 
+int list_patient()
+{
+    if(patient_count == 0)
+    {
+        printf("No patient Yet!");
+        return;
+    }
+    for(int i = 0 ; i < patient_count;i++)
+    {
+        printf("Patient [%d]
+                Name : %s\n
+                Age : %d\n
+                Disease : %s\n
+                Date : %s\n" , i+1 , patients[i].name , patient[i].age , patient[i].disease , patient[i].date);
+    }
+}
+
+int add_patient()
+{
+    Patient p;
+    printf("Enter name : ");
+    scanf(" %[^\n]" , p.name);
+    printf("Enter age : ");
+    scanf(" %d" , &p.age);
+    printf("Enter Disease : ");
+    scanf(" %[^\n]" , p.disease);
+    printf("Enter date (YYYY-MM-DD) : ");
+    scanf(" %[^\n]" , p.date);
+
+    patient = realloc(patient , (patient_count + 1) * sizeof(Patient));
+    if(!patients){
+        perror("Memmory allocation failed");
+        exit(1);
+    }
+    patients[patient_count++] = p;
+    printf("Patient added!\n");
 }
 
 int search()
@@ -49,42 +144,14 @@ int display_menu()
     return option;
 }
 
-int read_csv()
-{
-    FILE *fp = fopen("info.csv" , "r");
-    if(fp == NULL)
-    {
-        printf("Failed to open file for reading\n");
-        exit(1);
-    }
-    char text[MAX_LINE];
-    while(fgets(line , sizeof(text) , fp))
-    {
-        char *token = strtok(text , ",")
-        while(token != NULL)
-        {
-            printf("%s\t" , token);
-            token = strtok(NULL , ",");
-        }
-        printf("\n");
-    }
-    fclose(fp);
-}
 
-int write_csv(char name , char age , char congential , char date)
-{
-    FILE *fp = fopen("info.csv" , "w");
-    if(fp == NULL)
-    {
-        printf("Failed to open file to writing");
-        exit(1);
-    }
 
-}
+
 
 int main()
 {
     int option;
+    load_csv("data.csv");
     while (1){    
         option = display_menu();
         switch (option)
@@ -93,7 +160,7 @@ int main()
                 list_patient();
                 break;
             case 2:
-                add_patient_info();
+                save_csv(filename);
                 break;
             case 3:
                 search();
