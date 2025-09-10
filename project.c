@@ -160,31 +160,36 @@ void update_patient()
         return;
     }
     printf("Patient [%d]\nName : %s\n" , i+1 , patients[i].name);
-    printf("Yes / no : ");
+    printf("Yes / No : ");
     scanf(" %[^\n]" , condition);
     if(check_condition(condition))
     {
         int new_age;
-        char new_disease[50];
+        char new_disease[30];
+        char new_date[20];
         printf("Enter new age (0 for no change) : ");
         scanf("%d" , &new_age);
         printf("Enter new disease (- for no change): ");
         scanf(" %[^\n]" , new_disease);
+        printf("Enter Date : ");
+        scanf(" %[^\n]" , new_date);
+        char temp_name[30];
+        strcpy(temp_name , patients[i].name);
+        for(int j = i;j < patient_count-1;j++)
+        {
+            patients[j] = patients[j+1];
+        }
+        strcpy(patients[patient_count-1].date , new_date);
         if(new_age != 0)
         {
-            patients[i].age = new_age;
+            patients[patient_count-1].age = new_age;
         }
         if(strcmp(new_disease , "-") != 0)
         {
-            strcpy(patients[i].disease , new_disease);
+            strcpy(patients[patient_count-1].disease , new_disease);
         }
-        for(int i = 0;i<5;i++)
-        {
-            printf(".");
-            fflush(stdout);
-            usleep(500000);
-        }
-        printf("Updated!\n");
+        strcpy(patients[patient_count-1].name , temp_name);
+        printf("Update Successfully!\n");;
     }
 }
 
@@ -261,7 +266,6 @@ int main()
             default:
                 printf("Invalid input\n");
         }
-        sleep(2);
     }
     
     return 0;

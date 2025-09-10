@@ -1,5 +1,4 @@
 name,age,congenital-disease,date
-John Doe,30,Hypertension,2025-08-01
 Jane Smith,25,Diabetes,2025-07-20
 Alice Johnson,40,Asthma,2025-08-05
 Bob Brown,50,Heart Disease,2025-06-15
@@ -19,3 +18,4 @@ Jessica Walker,27,Diabetes,2025-07-26
 Kevin Hall,44,Asthma,2025-08-07
 Megan Young,31,Allergy,2025-08-05
 Eric King,50,Heart Disease,2025-06-18
+John Doe,31,Heart Disease,2025-09-12
