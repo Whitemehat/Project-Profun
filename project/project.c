@@ -151,7 +151,7 @@ void update_patient()
 {
     char name[50];
     char condition[4];
-    printf("Enter Pateint name for Update: ");
+    printf("Enter Patient name for Update: ");
     scanf(" %[^\n]" , name);
     int i = sort_patient(name);
     if(i == -1)
@@ -223,8 +223,11 @@ void menu()
     printf("3. search from name / congential disease\n");
     printf("4. update age / congential disease\n");
     printf("5. delete patient information\n");
+    printf("6. exit program\n");
     printf("###########################################\n");
 }
+
+
 
 int display_menu()
 {

@@ -27,6 +27,8 @@ int main()
                 delete_patient();
                 save_csv(filename);
                 break;
+            case 6:
+                return 0;
             default:
                 printf("Invalid input\n");
         }
