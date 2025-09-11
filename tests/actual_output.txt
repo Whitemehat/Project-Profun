@@ -6,15 +6,9 @@
 5. delete patient information
 6. exit program
 ###########################################
-Enter your option : 4
-Enter Patient name for Update: David
-Patient [20]
+Enter your option : Enter Patient name for Update: Patient [20]
 Name : David Anderson
-Yes / No : yes
-Enter new age (0 for no change) : 60
-Enter new disease (- for no change): -   
-Enter Date : 2025-11-30
-Update Successfully!
+Yes / No : Enter new age (0 for no change) : Enter new disease (- for no change): Enter Date : Update Successfully!
 ###########################################
 1. list patient health information
 2. add the patient information
@@ -23,4 +17,4 @@ Update Successfully!
 5. delete patient information
 6. exit program
 ###########################################
-Enter your option :
+Enter your option : 
