@@ -13,10 +13,12 @@ typedef struct{
 extern Patient *patients;
 extern int patient_count;
 
+int login();
 int sort_patient(const char *keyword);
 int check_condition(char *condition);
 void load_csv(const char *filename);
 void save_csv(const char *filename);
+void sort_date();
 void list_patient();
 void add_patient();
 void search();

@@ -1,11 +1,27 @@
 #include "project.h"
 #include "stdio.h"
+#include <unistd.h>
+
 int main()
 {
+    int Authen = 0;
     int option;
     char filename[] = "data.csv";
+    int attemp = 0;
     load_csv(filename);
-    while (1){    
+    while(Authen == 0 && attemp < 3){
+        if(attemp != 0)
+        {
+            for(int i = 10 ; i > 0;i--)
+            {
+            printf("wait %d second\n" , i);
+            sleep(1);
+            }
+        }
+        Authen = login();
+        attemp++;
+    }
+    while (Authen == 1){    
         option = display_menu();
         switch (option)
         {
@@ -28,9 +44,10 @@ int main()
                 save_csv(filename);
                 break;
             case 6:
-                return 0;
+                Authen = 0;
             default:
                 printf("Invalid input\n");
+                break;
         }
     }
     return 0;

@@ -27,6 +27,10 @@ int sort_patient(const char *keyword){
     return -1;
 }
 
+void sort_date(){
+    
+}
+
 int check_condition(char *condition){
     int state = 0;
     char c = condition[0];
@@ -115,6 +119,11 @@ void add_patient()
     Patient p;
     printf("Enter name : ");
     scanf(" %[^\n]" , p.name);
+    int i = sort_patient(p.name);
+    if(i != -1){
+        printf("Already has this Patient!\n");
+        return ;
+    }
     printf("Enter age : ");
     scanf(" %d" , &p.age);
     printf("Enter Disease : ");
@@ -228,12 +237,42 @@ void menu()
 }
 
 
-
 int display_menu()
 {
     int option;
     menu();
     printf("Enter your option : ");
-    scanf("%d" , &option);
+    if(scanf("%d" , &option) != 1)
+    {
+        while(getchar() != '\n');
+        return -1;
+    }
     return option;
+}
+
+int login(){
+    char user[64];
+    char password[64];
+    int attemp = 0;
+    while(attemp < 3){
+        printf("Username : ");
+        if(fgets(user , sizeof(user) , stdin) == NULL){
+            printf("Error! User\n");
+            return 0;
+        }
+        user[strcspn(user , "\n")] = '\0';
+        printf("Password : ");
+        if(fgets(password , sizeof(password) , stdin) == NULL)
+        {
+            printf("Error! Pass\n");
+            return 0;
+        }
+        password[strcspn(password , "\n")] = '\0';
+        if(strcmp(user , "Agent 32") == 0 && strcmp(password , "A$3nt32") == 0){
+            return 1;
+        }
+        printf("[*] attemp [%d] !Username or Password incorrect!\n" , attemp+1);
+        attemp++;
+    }
+    return 0;
 }
