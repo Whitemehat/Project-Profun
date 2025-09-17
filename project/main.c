@@ -1,6 +1,7 @@
 #include "project.h"
 #include "stdio.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -21,8 +22,10 @@ int main()
         Authen = login();
         attemp++;
     }
-    while (Authen == 1){    
+    system("clear");
+    while (Authen == 1){
         option = display_menu();
+        system("clear");
         switch (option)
         {
             case 1:
@@ -49,6 +52,7 @@ int main()
                 printf("Invalid input\n");
                 break;
         }
+        
     }
     return 0;
 }

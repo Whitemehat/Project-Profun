@@ -27,9 +27,6 @@ int sort_patient(const char *keyword){
     return -1;
 }
 
-void sort_date(){
-    
-}
 
 int check_condition(char *condition){
     int state = 0;
@@ -123,7 +120,7 @@ void add_patient()
     if(i != -1){
         printf("Already has this Patient!\n");
         return ;
-    }
+    } 
     printf("Enter age : ");
     scanf(" %d" , &p.age);
     printf("Enter Disease : ");
