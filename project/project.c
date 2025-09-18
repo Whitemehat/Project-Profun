@@ -5,6 +5,7 @@
 
 #define MAX_LINE 1024
 
+
 typedef struct {
     char name[50];
     int age;

@@ -48,6 +48,7 @@ int main()
                 break;
             case 6:
                 Authen = 0;
+                break;
             default:
                 printf("Invalid input\n");
                 break;
