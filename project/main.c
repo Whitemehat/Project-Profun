@@ -48,10 +48,15 @@ int main()
                 break;
             case 6:
                 Authen = 0;
+                printf("Bye bye 👋\n");
                 break;
             default:
                 printf("Invalid input\n");
                 break;
+        }
+        if(option != 6){
+            sort_by_date();
+            save_csv(filename);
         }
         
     }

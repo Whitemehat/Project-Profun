@@ -16,6 +16,22 @@ typedef struct {
 Patient *patients = NULL;
 int patient_count = 0;
 
+int compare_date(const void *a, const void *b) {
+    Patient *p1 = (Patient *)a;
+    Patient *p2 = (Patient *)b;
+    return strcmp(p1->date, p2->date); 
+}
+
+void sort_by_date() {
+    if (patient_count == 0) {
+        printf("No patients to sort!\n");
+        return;
+    }
+    qsort(patients, patient_count, sizeof(Patient), compare_date);
+    printf("Patients sorted by date successfully!\n");
+}
+
+
 int sort_patient(const char *keyword){
     int i;
     for(i = 0 ;i < patient_count;i++)
@@ -115,6 +131,7 @@ void list_patient()
 void add_patient()
 {
     Patient p;
+    int age;
     printf("Enter name : ");
     scanf(" %[^\n]" , p.name);
     int i = sort_patient(p.name);
@@ -122,20 +139,29 @@ void add_patient()
         printf("Already has this Patient!\n");
         return ;
     } 
-    printf("Enter age : ");
-    scanf(" %d" , &p.age);
-    printf("Enter Disease : ");
-    scanf(" %[^\n]" , p.disease);
-    printf("Enter date (YYYY-MM-DD) : ");
-    scanf(" %[^\n]" , p.date);
+    
+    else{
+        printf("Enter age : ");
+        scanf("%d" , &age);
+        if(age > 122){
+        printf("Too high from history Ask the Adminstrator for adding\n");
+        return ;
+        }
+        printf("Enter Disease : ");
+        scanf(" %[^\n]" , p.disease);
+        printf("Enter date (YYYY-MM-DD) : ");
+        scanf(" %[^\n]" , p.date);
 
-    patients = realloc(patients , (patient_count + 1) * sizeof(Patient));
-    if(!patients){
-        perror("Memmory allocation failed");
-        exit(1);
+        p.age = age;
+
+        patients = realloc(patients , (patient_count + 1) * sizeof(Patient));
+        if(!patients){
+            perror("Memmory allocation failed");
+            exit(1);
+        }
+        patients[patient_count++] = p;
+        printf("Patient added!\n");
     }
-    patients[patient_count++] = p;
-    printf("Patient added!\n");
 }
 
 void search()
@@ -208,14 +234,24 @@ void delete_patient()
     int i = sort_patient(name);
     if(i != -1)
     {
-        for(int j = i;j < patient_count-1;j++)
-        {
-            patients[j] = patients[j+1];
+        char condition[4];
+        printf("Patient [%d] , Name %s \n" , i+1 , patients[i].name);
+        printf("Yes / No : ");
+        scanf(" %[^\n]" , condition);
+        if(check_condition(condition)){
+            for(int j = i;j < patient_count-1;j++)
+            {
+                patients[j] = patients[j+1];
+            }
+            patient_count--;
+            patients = realloc(patients , patient_count * sizeof(Patient));
+            printf("Deleted successfully!");
+            return;
         }
-        patient_count--;
-        patients = realloc(patients , patient_count * sizeof(Patient));
-        printf("Deleted successfully!");
-        return;
+        else{
+            printf("Not Deleted\n");
+            return ;
+        }
     }
     else{
         printf("Patient not found!");
