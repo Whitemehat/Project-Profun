@@ -1,0 +1,27 @@
+Username : Password : ###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Enter name : Enter age : Enter disease : Enter date (YYYY-MM-DD) : Patient added!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Patient [1] , Name : Charlie , Age : 40 , Disease : Asthma , Date : 2025-01-01
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Exit program
