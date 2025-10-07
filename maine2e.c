@@ -1,7 +1,8 @@
 #include "project.h"
 #include <stdio.h>
 
-int main()
+
+int main_program()
 {
     int patient_count = 0;
     load_csv("data.csv", &patient_count);
