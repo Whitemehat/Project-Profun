@@ -6,7 +6,60 @@ Username : Password : ###########################################
 5. delete patient information
 6. exit program
 ###########################################
-Enter your option : Enter name : Enter age : Enter disease : Enter date (YYYY-MM-DD) : Patient added!
+Enter your option : Enter Patient name for Update: Yes / No : ###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Invalid option!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Invalid option!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Invalid option!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Invalid option!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Invalid option!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Invalid option!
 ###########################################
 1. list patient health information
 2. add the patient information
@@ -16,7 +69,7 @@ Enter your option : Enter name : Enter age : Enter disease : Enter date (YYYY-MM
 6. exit program
 ###########################################
 Enter your option : Patient [1] , Name : Pap Pap , Age : 32 , Disease : Heart disease , Date : 2025-03-01
-Patient [2] , Name : Peter Tamo , Age : 56 , Disease : - , Date : 2025-04-23
+Patient [2] , Name : Peter Tamo , Age : 19 , Disease : Flu , Date : 2025-10-07
 Patient [3] , Name : Bob Brown , Age : 50 , Disease : Heart Disease , Date : 2025-06-15
 Patient [4] , Name : Eric King , Age : 50 , Disease : Heart Disease , Date : 2025-06-18
 Patient [5] , Name : James Taylor , Age : 55 , Disease : Heart Disease , Date : 2025-06-20
@@ -39,7 +92,6 @@ Patient [21] , Name : John Doe , Age : 31 , Disease : Heart Disease , Date : 202
 Patient [22] , Name : Jane Smith , Age : 26 , Disease : Flu , Date : 2025-09-25
 Patient [23] , Name : Lisa Martin , Age : 25 , Disease : Flu , Date : 2025-09-25
 Patient [24] , Name : David Anderson , Age : 60 , Disease : Heart Disease , Date : 2025-11-30
-Patient [25] , Name : Charlie , Age : 40 , Disease : Asthma , Date : 2025-01-01
 ###########################################
 1. list patient health information
 2. add the patient information

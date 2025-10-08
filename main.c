@@ -1,8 +1,9 @@
 #include "project.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 int main()
 {
+    Patient *patients = NULL;
     int patient_count = 0;
     load_csv("data.csv", &patient_count);
 
@@ -33,6 +34,7 @@ int main()
             case 6:
                 save_csv("data.csv", patient_count);
                 printf("Exit program\n");
+                free(patients);
                 return 0;
             default:
                 printf("Invalid option!\n");

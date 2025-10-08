@@ -16,7 +16,7 @@ Enter your option : Enter the patient name to delete: Yes / No : Deleted success
 6. exit program
 ###########################################
 Enter your option : Patient [1] , Name : Pap Pap , Age : 32 , Disease : Heart disease , Date : 2025-03-01
-Patient [2] , Name : Peter Tamo , Age : 56 , Disease : - , Date : 2025-04-23
+Patient [2] , Name : Peter Tamo , Age : 19 , Disease : Flu , Date : 2025-10-07
 Patient [3] , Name : Bob Brown , Age : 50 , Disease : Heart Disease , Date : 2025-06-15
 Patient [4] , Name : Eric King , Age : 50 , Disease : Heart Disease , Date : 2025-06-18
 Patient [5] , Name : James Taylor , Age : 55 , Disease : Heart Disease , Date : 2025-06-20

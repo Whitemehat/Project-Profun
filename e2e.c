@@ -8,7 +8,7 @@ int main_program(); // rename your main() to main_program in main.c
 
 void e2e_add_patient() {
     // Prepare input (simulate user actions)
-    FILE *input = fopen("input.txt", "w");
+    FILE *input = fopen("./E2E/input_add.txt", "w");
     fprintf(input,
         "Agent 32\n"        // username (for login)
         "A$3nt32\n"     // password
@@ -23,10 +23,10 @@ void e2e_add_patient() {
     fclose(input);
 
     // Redirect stdin to input.txt
-    freopen("input.txt", "r", stdin);
+    freopen("./E2E/input_add.txt", "r", stdin);
 
     // Redirect stdout to output.txt
-    freopen("output.txt", "w", stdout);
+    freopen("./E2E/output_add.txt", "w", stdout);
 
     // Run program
     main_program();
@@ -36,7 +36,7 @@ void e2e_add_patient() {
     freopen("/dev/tty", "r", stdin);
 
     // Verify output 
-    FILE *output = fopen("output.txt", "r");
+    FILE *output = fopen("./E2E/output_add.txt", "r");
     char buffer[1024];
     int found_charlie = 0;
     while (fgets(buffer, sizeof(buffer), output)) {
@@ -54,7 +54,7 @@ void e2e_add_patient() {
 }
 
 void e2e_delete_patient(){
-    FILE *fp = fopen("input_del.txt" , "w");
+    FILE *fp = fopen("./E2E/input_del.txt" , "w");
     fprintf(fp , 
             "Agent 32\n"
             "A$3nt32\n"
@@ -66,16 +66,16 @@ void e2e_delete_patient(){
     );
     fclose(fp);
     
-    freopen("input_del.txt", "r", stdin);
+    freopen("./E2E/input_del.txt", "r", stdin);
 
-    freopen("output_del.txt", "w", stdout);
+    freopen("./E2E/output_del.txt", "w", stdout);
 
     main_program();
     
     freopen("/dev/tty" , "w" , stdout);
     freopen("/dev/tty" , "r" , stdin);
 
-    FILE *output = fopen("output_del.txt" , "r");
+    FILE *output = fopen("./E2E/output_del.txt" , "r");
     char buffer[1024];
     int success = 0;
     while(fgets(buffer , sizeof(buffer) , output)){
@@ -91,8 +91,90 @@ void e2e_delete_patient(){
     printf("E2E delete test passed!\n");
 }
 
+void e2e_search(){
+    FILE *input = fopen("./E2E/input_search.txt" , "w");
+    fprintf(input ,
+            "Agent 32\n"
+            "A$3nt32\n"
+            "3\n"
+            "Peter\n"
+            "6\n"
+    );
+    fclose(input);
+    
+    freopen("./E2E/input_search.txt", "r" , stdin);
+    freopen("./E2E/output_search.txt", "w" , stdout);
+
+    main_program();
+
+    freopen("/dev/tty" , "w" ,stdout);
+    freopen("/dev/tty" , "r" ,stdin);
+    FILE *output = fopen("./E2E/output_search.txt" , "r");
+    char name[1024];
+    int found = 0;
+    while(fgets(name , sizeof(name) , output)){
+        if(strstr(name , "Peter") != NULL){
+            found = 1;
+            break;
+        }
+    }
+    fclose(output);
+    assert(found == 1);
+
+    printf("E2E search test success!\n");
+}
+
+void e2e_update(){
+    FILE *input = fopen("./E2E/input_update.txt" , "w");
+    fprintf(input ,
+            "Agent 32\n"
+            "A$3nt32\n"
+            "4\n"
+            "Peter\n"
+            "No\n"
+            "Yes\n"
+            "19\n"
+            "-\n"
+            "2025-10-07\n"
+            "1\n"
+            "6\n"            
+    );
+    fclose(input);
+
+    freopen("./E2E/input_update.txt" , "r" , stdin);
+    freopen("./E2E/output_update.txt" , "w" , stdout);
+
+    main_program();
+
+    freopen("/dev/tty" , "w" , stdout);
+    freopen("/dev/tty" , "r" , stdin);
+
+    char line[1024];
+    int success = 0;
+    FILE *output = fopen("./E2E/output_update.txt" , "r");
+    while(fgets(line , sizeof(line) , output)){
+        if ((strstr(line, "Peter") != NULL) &&
+            (strstr(line, "19") != NULL) &&
+            (strstr(line, "Flu") != NULL) &&
+            (strstr(line, "2025-10-07") != NULL))
+            {
+                success = 1;
+                break;
+            }
+        
+    }
+    fclose(output);
+    assert(success == 1);
+    
+    printf("E2E update test success!\n");
+    
+
+}
+
 int main() {
     e2e_add_patient();
     e2e_delete_patient();
+    e2e_search();
+    e2e_update();
     return 0;
 }
