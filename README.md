@@ -1,3 +1,4 @@
+# Use ubuntu or linux to compile and Running!!!!!
 # how to complie project
 `gcc -o app main.c project.c`
 # how to complie the unit test
