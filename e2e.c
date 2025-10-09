@@ -175,5 +175,5 @@ int main() {
     e2e_delete_patient();
     e2e_search();
     e2e_update();
-    return 0;
+    return 1;
 }
