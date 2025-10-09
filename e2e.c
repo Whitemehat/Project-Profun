@@ -175,5 +175,6 @@ int main() {
     e2e_delete_patient();
     e2e_search();
     e2e_update();
+    printf("All Test is passed !\n");
     return 0;
 }

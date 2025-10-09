@@ -10,7 +10,7 @@ Enter your option : Enter name or disease to search : Patient [2]
 Name : Peter Tamo
 Age : 19
 Disease : Flu
-Date : 2025-10-07
+Date : 2025-06-01
 ###########################################
 1. list patient health information
 2. add the patient information
