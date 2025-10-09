@@ -1,0 +1,56 @@
+Username : Password : ###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Enter Patient name for Update: Peter
+19
+Flu
+2025-10-07
+Yes / No : Enter new age (0 for no change) : Enter new disease (- for no change): Enter new date (- for no change): Update Successfully!
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Patient [1] , Name : Pap Pap , Age : 32 , Disease : Heart disease , Date : 2025-03-01
+Patient [2] , Name : Bob Brown , Age : 50 , Disease : Heart Disease , Date : 2025-06-15
+Patient [3] , Name : Eric King , Age : 50 , Disease : Heart Disease , Date : 2025-06-18
+Patient [4] , Name : James Taylor , Age : 55 , Disease : Heart Disease , Date : 2025-06-20
+Patient [5] , Name : Steven Harris , Age : 47 , Disease : Heart Disease , Date : 2025-07-22
+Patient [6] , Name : Michael Wilson , Age : 28 , Disease : Hypertension , Date : 2025-07-25
+Patient [7] , Name : Jessica Walker , Age : 27 , Disease : Diabetes , Date : 2025-07-26
+Patient [8] , Name : Brian Jackson , Age : 41 , Disease : Diabetes , Date : 2025-07-28
+Patient [9] , Name : Sarah Miller , Age : 45 , Disease : Diabetes , Date : 2025-08-02
+Patient [10] , Name : Karen Moore , Age : 29 , Disease : Hypertension , Date : 2025-08-03
+Patient [11] , Name : Paul Lee , Age : 39 , Disease : Hypertension , Date : 2025-08-04
+Patient [12] , Name : Alice Johnson , Age : 40 , Disease : Asthma , Date : 2025-08-05
+Patient [13] , Name : Megan Young , Age : 31 , Disease : Allergy , Date : 2025-08-05
+Patient [14] , Name : Nancy White , Age : 36 , Disease : Asthma , Date : 2025-08-06
+Patient [15] , Name : Kevin Hall , Age : 44 , Disease : Asthma , Date : 2025-08-07
+Patient [16] , Name : Emily Davis , Age : 50 , Disease : Heartbreak , Date : 2025-08-10
+Patient [17] , Name : Madam Jane , Age : 34 , Disease : Cancer , Date : 2025-08-11
+Patient [18] , Name : Laura Thomas , Age : 14 , Disease : Idoit , Date : 2025-08-19
+Patient [19] , Name : Peter , Age : 19 , Disease : Flu , Date : 2025-10-07
+Patient [20] , Name : Ann Dinosaur , Age : 20 , Disease : Dinosaur , Date : 2025-09-11
+Patient [21] , Name : John Doe , Age : 31 , Disease : Heart Disease , Date : 2025-09-12
+Patient [22] , Name : Jane Smith , Age : 26 , Disease : Flu , Date : 2025-09-25
+Patient [23] , Name : Lisa Martin , Age : 25 , Disease : Flu , Date : 2025-09-25
+Patient [24] , Name : Peter Tamo , Age : 19 , Disease : Flu , Date : 2025-10-07
+Patient [25] , Name : Austin KFC , Age : 19 , Disease : Love , Date : 2025-10-11
+Patient [26] , Name : David Anderson , Age : 60 , Disease : Heart Disease , Date : 2025-11-30
+###########################################
+1. list patient health information
+2. add the patient information
+3. search from name / congenital disease
+4. update age / congenital disease
+5. delete patient information
+6. exit program
+###########################################
+Enter your option : Exit program
