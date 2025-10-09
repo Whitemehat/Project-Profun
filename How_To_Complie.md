@@ -6,5 +6,3 @@
 `gcc -o E2E_test e2e.c project.c maine2e.c`
 # how to run app , unit test , E2E test
 `./app`
-`./unit_test`
-`./E2E_test`

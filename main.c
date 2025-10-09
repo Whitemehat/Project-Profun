@@ -37,6 +37,12 @@ int main()
                 
                 break;
             case 6:
+                system("./unit_test");
+                break;
+            case 7:
+                system("./E2E_test");
+                break;
+            case 0:
                 save_csv("data.csv", patient_count);
                 printf("Exit program\n");
                 free(patients);
@@ -44,6 +50,7 @@ int main()
             default:
                 printf("Invalid option!\n");
                 break;
+                
         }
         if(option != 1 && option != 6){
             sort_by_date(patients , patient_count);

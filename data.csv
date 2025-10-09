@@ -1,6 +1,5 @@
 name,age,congenital-disease,date
 Pap Pap,32,Heart disease,2025-03-01
-Peter Tamo,19,Flu,2025-10-07
 Bob Brown,50,Heart Disease,2025-06-15
 Eric King,50,Heart Disease,2025-06-18
 James Taylor,55,Heart Disease,2025-06-20
@@ -24,5 +23,6 @@ Pah,18,fat,2025-09-23
 Jane Smith,26,Flu,2025-09-25
 Lisa Martin,25,Flu,2025-09-25
 Sandee,18,Flu,2025-10-01
+Peter Tamo,19,Flu,2025-10-07
 Austin KFC,19,Love,2025-10-11
 David Anderson,60,Heart Disease,2025-11-30

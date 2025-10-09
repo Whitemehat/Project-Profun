@@ -229,7 +229,9 @@ bool menu() {
     printf("3. search from name / congenital disease\n");
     printf("4. update age / congenital disease\n");
     printf("5. delete patient information\n");
-    printf("6. exit program\n");
+    printf("6. Unit Test\n");
+    printf("7. E2E Test\n");
+    printf("0. Exit Program\n");
     printf("###########################################\n");
     return true;
 }
