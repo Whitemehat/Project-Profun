@@ -4,7 +4,9 @@ Username : Password : ###########################################
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Enter name or disease to search : Patient [25]
 Name : Peter Tamo
@@ -17,6 +19,8 @@ Date : 2025-10-07
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Exit program

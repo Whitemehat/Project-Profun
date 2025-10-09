@@ -4,7 +4,9 @@ Username : Password : ###########################################
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Enter Patient name for Update: Peter Tamo
 19
@@ -17,7 +19,9 @@ Yes / No : Enter new age (0 for no change) : Enter new disease (- for no change)
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Patient [1] , Name : Pap Pap , Age : 32 , Disease : Heart disease , Date : 2025-03-01
 Patient [2] , Name : Bob Brown , Age : 50 , Disease : Heart Disease , Date : 2025-06-15
@@ -52,6 +56,8 @@ Patient [27] , Name : David Anderson , Age : 60 , Disease : Heart Disease , Date
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Exit program

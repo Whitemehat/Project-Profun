@@ -4,7 +4,9 @@ Username : Password : ###########################################
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Enter name : Enter age : Enter disease : Enter date (YYYY-MM-DD) : Patient added!
 ###########################################
@@ -13,7 +15,9 @@ Enter your option : Enter name : Enter age : Enter disease : Enter date (YYYY-MM
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Patient [1] , Name : Pap Pap , Age : 32 , Disease : Heart disease , Date : 2025-03-01
 Patient [2] , Name : Bob Brown , Age : 50 , Disease : Heart Disease , Date : 2025-06-15
@@ -49,6 +53,8 @@ Patient [28] , Name : Charlie , Age : 40 , Disease : Asthma , Date : 2025-01-01
 3. search from name / congenital disease
 4. update age / congenital disease
 5. delete patient information
-6. exit program
+6. Unit Test
+7. E2E Test
+0. Exit Program
 ###########################################
 Enter your option : Exit program
