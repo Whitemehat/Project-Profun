@@ -131,7 +131,6 @@ void e2e_update(){
             "A$3nt32\n"
             "4\n"
             "Peter\n"
-            "No\n"
             "Yes\n"
             "19\n"
             "-\n"
@@ -176,5 +175,5 @@ int main() {
     e2e_delete_patient();
     e2e_search();
     e2e_update();
-    return 0;
+    return 1;
 }
