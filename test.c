@@ -79,18 +79,31 @@ void test_delete_patient() {
 }
 
 void test_search_patient() {
-    int count = 2;
+    int count = 3;
     patients = malloc(count * sizeof(Patient));
     strcpy(patients[0].name, "Alice");
     strcpy(patients[0].disease, "Flu");
     strcpy(patients[1].name, "Bob");
     strcpy(patients[1].disease, "Cold");
+    strcpy(patients[2].name, "Peter Tamo");
+    strcpy(patients[2].disease, "Flu");
 
-    int test = search_patient("Alice", "y", count);
+    int test = search_patient("Alice", "y", count, 0);
     assert(test == 0);
-    test = search_patient("Cold", "y", count);
+
+    test = search_patient("Bob", "y", count, 1);
     assert(test == 1);
-    test = search_patient("Unknown", "y", count);
+
+    test = search_patient("Peter Tamo", "y", count, 2);
+    assert(test == 2);
+
+    test = search_patient("Unknown", "y", count, 0);
+    assert(test == -1);
+
+    test = search_patient("Peter", "y", count, 2);
+    assert(test == -1);
+
+    test = search_patient("Alice", "n", count, 0);
     assert(test == -1);
 
     free(patients);

@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 Patient *patients = NULL;
 
 //CORE FUNCTION
-
 int check_condition(const char *condition) {
     if (!condition || !condition[0]) return 0;
     char c = condition[0];
@@ -32,7 +32,11 @@ int add_patient_core(const char *name, int age, const char *disease, const char 
 }
 
 int update_patient_core(const char *name, int new_age, const char *new_disease, const char *new_date, int patient_count) {
-    int i = search_patient(name, "y", patient_count);
+    int i = -1;
+    for (int j = 0; j < patient_count; j++) {
+        i = search_patient(name, "y", patient_count, j);
+        if (i != -1) break; // ✅ stop once found
+    }
     if (i == -1) return 0;
 
     if (new_age != 0) patients[i].age = new_age;
@@ -43,20 +47,28 @@ int update_patient_core(const char *name, int new_age, const char *new_disease, 
 }
 
 int delete_patient_core(const char *name, int *patient_count) {
-    int i = search_patient(name, "y", *patient_count);
+    int i = -1;
+    for (int j = 0; j < *patient_count; j++) {
+        i = search_patient(name, "y", *patient_count, j);
+        if (i != -1) break; // ✅ stop once found
+    }
     if (i == -1) return 0;
 
     for (int j = i; j < *patient_count - 1; j++) patients[j] = patients[j + 1];
     (*patient_count)--;
-    patients = realloc(patients, (*patient_count) * sizeof(Patient));
+
+    if (*patient_count > 0) {
+        patients = realloc(patients, (*patient_count) * sizeof(Patient));
+    } else {
+        free(patients);
+        patients = NULL;
+    }
     return 1;
 }
 
-int search_patient(const char *keyword, const char *condition, int patient_count) {
-    for (int i = 0; i < patient_count; i++) {
-        if (strstr(patients[i].name, keyword) || strstr(patients[i].disease, keyword)) {
-            if (check_condition(condition)) return i;
-        }
+int search_patient(const char *keyword, const char *condition, int patient_count , int i) {
+    if ((strcmp(patients[i].name, keyword) == 0)) {
+        if (check_condition(condition)) return i;
     }
     return -1;
 }
@@ -73,7 +85,6 @@ int compare_date(const void *a, const void *b) {
     if (m1 != m2) return m1 - m2;
     return d1 - d2;
 }
-
 
 int sort_by_date(Patient *patients, int patient_count) {
     if (patient_count == 0) return 0;
@@ -126,7 +137,11 @@ void add_patient_io(int *patient_count) {
 
     printf("Enter name : ");
     scanf(" %[^\n]", name);
-    int i = search_patient(name, "y", *patient_count);
+    int i = -1;
+    for (int j = 0; j < *patient_count; j++) {
+        i = search_patient(name, "y", *patient_count , j);
+        if (i != -1) break;
+    }
     if (i != -1) {
         printf("Already has this Patient!\n");
         return;
@@ -155,7 +170,11 @@ void update_patient_io(int patient_count) {
     printf("Enter Patient name for Update: ");
     scanf(" %[^\n]", name);
 
-    int i = search_patient(name, "y", patient_count);
+    int i = -1;
+    for (int j = 0; j < patient_count; j++) {
+        i = search_patient(name, "y", patient_count , j);
+        if (i != -1) break;
+    }
     if (i == -1) {
         printf("Patient not found!\n");
         return;
@@ -181,7 +200,11 @@ void delete_patient_io(int *patient_count) {
     printf("Enter the patient name to delete: ");
     scanf(" %[^\n]", name);
 
-    int i = search_patient(name, "y", *patient_count);
+    int i = -1;
+    for (int j = 0; j < *patient_count; j++) {
+        i = search_patient(name, "y", *patient_count , j);
+        if (i != -1) break;
+    }
     if (i == -1) {
         printf("Patient not found!\n");
         return;
@@ -202,14 +225,27 @@ void search_io(int patient_count) {
     char keyword[50];
     printf("Enter name or disease to search : ");
     scanf(" %[^\n]", keyword);
-    int i = search_patient(keyword, "y", patient_count);
-    if (i != -1) {
-        printf("Patient [%d]\nName : %s\nAge : %d\nDisease : %s\nDate : %s\n",
-               i + 1, patients[i].name, patients[i].age, patients[i].disease, patients[i].date);
-    } else {
+
+    int found = 0;
+
+    for (int j = 0; j < patient_count; j++) {
+        if (strcmp(patients[j].name, keyword) == 0) {
+            printf("Patient [%d]\nName : %s\nAge : %d\nDisease : %s\nDate : %s\n",
+                   j + 1, patients[j].name, patients[j].age, patients[j].disease, patients[j].date);
+            found = 1;
+        }
+        else if (strcmp(patients[j].disease, keyword) == 0) {
+            printf("Patient [%d]\nName : %s\nAge : %d\nDisease : %s\nDate : %s\n",
+                   j + 1, patients[j].name, patients[j].age, patients[j].disease, patients[j].date);
+            found = 1;
+        }
+    }
+
+    if (!found) {
         printf("No match found!\n");
     }
 }
+
 
 void list_patient(int patient_count) {
     if (patient_count == 0) {
@@ -245,6 +281,7 @@ int display_menu() {
     }
     return option;
 }
+
 
 int login() {
     char user[64], password[64];

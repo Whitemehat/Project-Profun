@@ -19,7 +19,7 @@ int check_condition(const char *condition);
 int add_patient_core(const char *name, int age, const char *disease, const char *date, int *patient_count);
 int update_patient_core(const char *name, int new_age, const char *new_disease, const char *new_date, int patient_count);
 int delete_patient_core(const char *name, int *patient_count);
-int search_patient(const char *keyword, const char *condition, int patient_count);
+int search_patient(const char *keyword, const char *condition, int patient_count , int i);
 int sort_by_date(Patient *patients, int patient_count);
 void load_csv(const char *filename, int *patient_count);
 void save_csv(const char *filename, int patient_count);

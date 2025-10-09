@@ -8,11 +8,11 @@ Username : Password : ###########################################
 7. E2E Test
 0. Exit Program
 ###########################################
-Enter your option : Enter name or disease to search : Patient [25]
-Name : Peter Tamo
+Enter your option : Enter name or disease to search : Patient [27]
+Name : Peter
 Age : 19
 Disease : Flu
-Date : 2025-10-07
+Date : 2025-10-14
 ###########################################
 1. list patient health information
 2. add the patient information
