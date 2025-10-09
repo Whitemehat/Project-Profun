@@ -22,22 +22,18 @@ int main()
                 break;
             case 2:
                 add_patient_io(&patient_count);
-                save_csv("data.csv", patient_count);
                 
                 break;
             case 3:
                 search_io(patient_count);
-                save_csv("data.csv", patient_count);
                 
                 break;
             case 4:
                 update_patient_io(patient_count);
-                save_csv("data.csv", patient_count);
                 
                 break;
             case 5:
                 delete_patient_io(&patient_count);
-                save_csv("data.csv", patient_count);
                 
                 break;
             case 6:
@@ -49,7 +45,12 @@ int main()
                 printf("Invalid option!\n");
                 break;
         }
-        sort_by_date(patients , patient_count);
+        if(option != 1 && option != 6){
+            sort_by_date(patients , patient_count);
+            save_csv("data.csv", patient_count);
+        }
+
+        
     }
 
     return 0;
