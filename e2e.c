@@ -131,7 +131,6 @@ void e2e_update(){
             "A$3nt32\n"
             "4\n"
             "Peter\n"
-            "No\n"
             "Yes\n"
             "19\n"
             "-\n"

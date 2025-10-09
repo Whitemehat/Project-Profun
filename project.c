@@ -64,8 +64,16 @@ int search_patient(const char *keyword, const char *condition, int patient_count
 int compare_date(const void *a, const void *b) {
     const Patient *first = (const Patient *)a;
     const Patient *second = (const Patient *)b;
-    return strcmp(first->date, second->date);
+
+    int y1, m1, d1, y2, m2, d2;
+    sscanf(first->date, "%d-%d-%d", &y1, &m1, &d1);
+    sscanf(second->date, "%d-%d-%d", &y2, &m2, &d2);
+
+    if (y1 != y2) return y1 - y2;
+    if (m1 != m2) return m1 - m2;
+    return d1 - d2;
 }
+
 
 int sort_by_date(Patient *patients, int patient_count) {
     if (patient_count == 0) return 0;
@@ -152,7 +160,7 @@ void update_patient_io(int patient_count) {
         printf("Patient not found!\n");
         return;
     }
-
+    printf("%s\n%d\n%s\n%s\n" , patients[i].name , patients[i].age , patients[i].disease , patients[i].date);
     printf("Yes / No : ");
     scanf(" %[^\n]", condition);
     if (!check_condition(condition)) return;
@@ -230,8 +238,7 @@ int display_menu() {
     int option;
     menu();
     printf("Enter your option : ");
-    if (scanf("%d", &option) != 1) {
-        while (getchar() != '\n');
+    if(scanf("%d" , &option) != 1){
         return -1;
     }
     return option;

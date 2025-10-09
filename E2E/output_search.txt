@@ -6,8 +6,13 @@ Username : Password : ###########################################
 5. delete patient information
 6. exit program
 ###########################################
+<<<<<<< HEAD
 Enter your option : Enter name or disease to search : Patient [2]
 Name : Peter Tamo
+=======
+Enter your option : Enter name or disease to search : Patient [19]
+Name : Peter
+>>>>>>> 06c7499 (Lastest Update)
 Age : 19
 Disease : Flu
 Date : 2025-10-07
