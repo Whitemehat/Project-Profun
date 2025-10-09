@@ -143,12 +143,19 @@ void test_load_and_save_csv() {
 
 int main() {
     test_check_condition();
+    printf("test_check_condition passed!\n");
     test_add_patient();
+    printf("test_add_patient passed!\n");
     test_update_patient();
+    printf("test_update_patient passed!\n");
     test_delete_patient();
+    printf("test_delete_patient passed!\n");
     test_search_patient();
+    printf("test_search_patient passed!\n");
     test_sort_by_date();
+    printf("test_sort_by_date passed!\n");
     test_load_and_save_csv();
+    printf("test_load_and_save_csv passed!\n");
 
     printf("All tests passed!\n");
     return 0;
